@@ -5,7 +5,12 @@
             <h2>hi</h2>
           </hgroup>
         </div>
+        <table>
 {{range $i, $item := .}}
-<div>{{$i}}</div>
+<tr>
+        <td>{{add $i 1}}</td>
+        <td><a href="/workers/{{index $item "guid"}}/">{{index $item "name"}}</a></td>
+</tr>
         {{end}}
+        </table>
 </article>

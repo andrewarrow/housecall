@@ -1,8 +1,10 @@
 <article class="grid">
         <div>
           <hgroup>
-            <h1>Dashboard.</h1>
-            <h2>hi</h2>
+            <h1>Dashboard</h1>
+            <h2>Hello, you have 
+                    <a href="/workers/">{{ index . "workers" }} workers</a> with
+                    <a href="/appointments/">{{ index . "appointments" }} upcoming appointments</a>.</h2>
           </hgroup>
         </div>
         <div></div>

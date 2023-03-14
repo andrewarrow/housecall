@@ -9,5 +9,6 @@ func HandleDashboard(c *router.Context, second, third string) {
 		c.UserRequired = true
 		return
 	}
-	c.SendContentInLayout("dashboard.html", nil, 200)
+	vars := map[string]int{"workers": 2, "appointments": 7}
+	c.SendContentInLayout("dashboard.html", vars, 200)
 }

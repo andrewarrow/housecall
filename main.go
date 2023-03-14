@@ -18,6 +18,9 @@ func main() {
 
 	if arg == "init" {
 		router.InitNewApp()
+	} else if arg == "reset" {
+		r := router.NewRouter()
+		r.ResetDatabase()
 	} else if arg == "run" {
 		r := router.NewRouter()
 		r.Paths["/"] = app.HandleWelcome

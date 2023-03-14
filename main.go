@@ -25,6 +25,8 @@ func main() {
 		r := router.NewRouter()
 		r.Paths["/"] = app.HandleWelcome
 		r.Paths["dashboard"] = app.HandleDashboard
+		r.Paths["workers"] = app.HandleWorkers
+		r.Paths["appointments"] = app.HandleAppointments
 
 		r.ListenAndServe(":3000")
 	} else if arg == "help" {

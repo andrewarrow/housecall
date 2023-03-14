@@ -21,6 +21,7 @@ func main() {
 	} else if arg == "run" {
 		r := router.NewRouter()
 		r.Paths["/"] = app.HandleWelcome
+		r.Paths["dashboard"] = app.HandleDashboard
 
 		r.ListenAndServe(":3000")
 	} else if arg == "help" {

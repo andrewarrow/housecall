@@ -1,8 +1,6 @@
 package app
 
 import (
-	"fmt"
-
 	"github.com/andrewarrow/feedback/router"
 )
 
@@ -23,7 +21,6 @@ func HandleWorkers(c *router.Context, second, third string) {
 func handleWorkersIndex(c *router.Context) {
 	if c.Method == "GET" {
 		rows := c.SelectAllFrom("workers")
-		fmt.Println(rows)
 		c.SendContentInLayout("workers_index.html", rows, 200)
 		return
 	}
@@ -36,8 +33,8 @@ func handleWorkersCreate(c *router.Context) {
 
 func handleWorkersShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-		m := map[string]string{"id": id}
-		c.SendContentInLayout("workers_show.html", m, 200)
+		row := c.SelectOneFrom(id, "workers")
+		c.SendContentInLayout("workers_show.html", row, 200)
 		return
 	}
 	handleWorkersUpdates(c, id)

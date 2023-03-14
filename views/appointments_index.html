@@ -2,8 +2,15 @@
         <div>
           <hgroup>
             <h1>appointments</h1>
-            <h2>hi</h2>
+            <h2>list</h2>
           </hgroup>
         </div>
-        <div></div>
+        <table>
+{{range $i, $item := .}}
+<tr>
+        <td>{{add $i 1}}</td>
+        <td><a href="/appointments/{{index $item "guid"}}/">{{index $item "guid"}}</a></td>
+</tr>
+        {{end}}
+        </table>
 </article>

@@ -20,7 +20,8 @@ func HandleAppointments(c *router.Context, second, third string) {
 
 func handleAppointmentsIndex(c *router.Context) {
 	if c.Method == "GET" {
-		c.SendContentInLayout("appointments_index.html", nil, 200)
+		rows := c.SelectAllFrom("appointments")
+		c.SendContentInLayout("appointments_index.html", rows, 200)
 		return
 	}
 	handleAppointmentsCreate(c)
@@ -32,8 +33,8 @@ func handleAppointmentsCreate(c *router.Context) {
 
 func handleAppointmentsShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-	  m := map[string]string{"id": id}
-		c.SendContentInLayout("appointments_show.html", m, 200)
+		row := c.SelectOneFrom(id, "appointments")
+		c.SendContentInLayout("appointments_show.html", row, 200)
 		return
 	}
 	handleAppointmentsUpdates(c, id)

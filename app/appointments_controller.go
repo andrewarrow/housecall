@@ -32,7 +32,8 @@ func handleAppointmentsCreate(c *router.Context) {
 
 func handleAppointmentsShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-		c.SendContentInLayout("appointments_show.html", nil, 200)
+	  m := map[string]string{"id": id}
+		c.SendContentInLayout("appointments_show.html", m, 200)
 		return
 	}
 	handleAppointmentsUpdates(c, id)

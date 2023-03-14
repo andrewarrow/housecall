@@ -32,7 +32,8 @@ func handleWorkersCreate(c *router.Context) {
 
 func handleWorkersShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-		c.SendContentInLayout("workers_show.html", nil, 200)
+	  m := map[string]string{"id": id}
+		c.SendContentInLayout("workers_show.html", m, 200)
 		return
 	}
 	handleWorkersUpdates(c, id)

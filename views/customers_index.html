@@ -1,0 +1,16 @@
+<article class="grid">
+        <div>
+          <hgroup>
+            <h1>customers</h1>
+            <h2>hi</h2>
+          </hgroup>
+        </div>
+        <table>
+{{range $i, $item := .}}
+<tr>
+        <td>{{add $i 1}}</td>
+        <td><a href="/customers/{{index $item "guid"}}/">{{index $item "guid"}}</a></td>
+</tr>
+        {{end}}
+        </table>
+</article>

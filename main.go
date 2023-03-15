@@ -27,6 +27,7 @@ func main() {
 		r.Paths["dashboard"] = app.HandleDashboard
 		r.Paths["workers"] = app.HandleWorkers
 		r.Paths["appointments"] = app.HandleAppointments
+		r.Paths["customers"] = app.HandleCustomers
 
 		r.ListenAndServe(":3000")
 	} else if arg == "help" {

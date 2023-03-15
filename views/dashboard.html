@@ -5,9 +5,14 @@
             <h2>Hello, you have 
   {{ $wcount := index . "workers" }}
   {{ $acount := index . "appointments" }}
+  {{ $ccount := index . "customers" }}
   <a href="/workers/">{{ $wcount }} worker{{ adds $wcount }}</a> with
   <a href="/appointments/">{{ $acount }} upcoming appointment{{ adds $acount }}</a>.</h2>
           </hgroup>
         </div>
-        <div></div>
+        <div>
+
+        Total of <a href="/customers/">{{ $ccount }} customer{{ adds $ccount }}</a>
+        on file.
+        </div>
 </article>

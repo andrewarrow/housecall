@@ -3,8 +3,10 @@
           <hgroup>
             <h1>Dashboard</h1>
             <h2>Hello, you have 
-                    <a href="/workers/">{{ index . "workers" }} workers</a> with
-                    <a href="/appointments/">{{ index . "appointments" }} upcoming appointments</a>.</h2>
+  {{ $wcount := index . "workers" }}
+  {{ $acount := index . "appointments" }}
+  <a href="/workers/">{{ $wcount }} worker{{ adds $wcount }}</a> with
+  <a href="/appointments/">{{ $acount }} upcoming appointment{{ adds $acount }}</a>.</h2>
           </hgroup>
         </div>
         <div></div>

@@ -6,10 +6,18 @@
           </hgroup>
         </div>
         <table>
+<tr>
+        <th>#</th>
+        <th>when</th>
+        <th>customer</th>
+        <th>worker</th>
+</tr>
 {{range $i, $item := .}}
 <tr>
         <td>{{add $i 1}}</td>
-        <td><a href="/appointments/{{index $item "guid"}}/">{{index $item "guid"}}</a></td>
+        <td><a href="/appointments/{{index $item "guid"}}/">{{index $item "appointment_at"}}</a> {{index $item "appointment_at_ago"}} |</td>
+        <td><a href="/customer/{{index $item "guid"}}/">{{index $item "customer_id"}}</a></td>
+        <td>worker</td>
 </tr>
         {{end}}
         </table>

@@ -5,12 +5,14 @@
             <h2>list</h2>
           </hgroup>
         </div>
-        <table>
-{{range $i, $item := .}}
-<tr>
-        <td>{{add $i 1}}</td>
-        <td><a href="/workers/{{index $item "guid"}}/">{{index $item "name"}}</a></td>
-</tr>
-        {{end}}
+        <table id="workers">
+        {{template "_workers" .}}
         </table>
+        <div>
+      Add Worker:
+     <form id="form1" method="POST" action="/workers/" onsubmit="sendFormAsJson('workers',event);">
+         <input type="text" name="name" id="name" placeholder="name"/>
+         <input type="submit" value="add worker"/>
+     </form>
+        </div>
 </article>

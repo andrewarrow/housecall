@@ -1,0 +1,8 @@
+{{define "_workers"}}
+{{range $i, $item := .}}
+<tr>
+   <td>{{add $i 1}}</td>
+   <td><a href="/workers/{{index $item "guid"}}/">{{index $item "name"}}</a></td>
+</tr>
+{{end}}
+{{end}}

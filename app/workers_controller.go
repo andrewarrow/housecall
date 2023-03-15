@@ -28,7 +28,8 @@ func handleWorkersIndex(c *router.Context) {
 }
 
 func handleWorkersCreate(c *router.Context) {
-	c.NotFound = true
+	vars := map[string]any{}
+	c.router.Template.ExecuteTemplate(c.Writer, "workers_list.html", vars)
 }
 
 func handleWorkersShow(c *router.Context, id string) {

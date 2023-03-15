@@ -28,8 +28,8 @@ func handleWorkersIndex(c *router.Context) {
 }
 
 func handleWorkersCreate(c *router.Context) {
-	vars := map[string]any{}
-	c.router.Template.ExecuteTemplate(c.Writer, "workers_list.html", vars)
+	rows := c.SelectAllFrom("workers", "", "")
+	c.ExecuteTemplate("workers_list.html", rows)
 }
 
 func handleWorkersShow(c *router.Context, id string) {

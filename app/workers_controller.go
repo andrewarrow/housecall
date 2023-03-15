@@ -21,7 +21,7 @@ func HandleWorkers(c *router.Context, second, third string) {
 
 func handleWorkersIndex(c *router.Context) {
 	if c.Method == "GET" {
-		rows := c.SelectAllFrom("workers", "", "")
+		rows := workersByUserId(c, c.User.Id)
 		c.SendContentInLayout("workers_index.html", rows, 200)
 		return
 	}

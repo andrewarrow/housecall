@@ -9,9 +9,9 @@ func HandleDashboard(c *router.Context, second, third string) {
 		c.UserRequired = true
 		return
 	}
-	workersCount := c.Count("workers")
-	customersCount := c.Count("customers")
-	appointmentsCount := c.Count("appointments")
+	workersCount := countWorkersByUserId(c, c.User.Id)
+	customersCount := c.Count("customers", "")
+	appointmentsCount := c.Count("appointments", "")
 
 	vars := map[string]any{"workers": workersCount,
 		"customers":    customersCount,

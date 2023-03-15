@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/andrewarrow/feedback/router"
+	"github.com/andrewarrow/feedback/sqlgen"
 )
 
 func HandleWorkers(c *router.Context, second, third string) {
@@ -28,6 +29,13 @@ func handleWorkersIndex(c *router.Context) {
 }
 
 func handleWorkersCreate(c *router.Context) {
+	//params := c.ReadBodyIntoJson()
+
+	model := c.FindModel("worker")
+	tableName := model.TableName()
+	sql, params := sqlgen.InsertRow(tableName, model.Fields)
+	c.Db.Exec(sql, params...)
+
 	rows := c.SelectAllFrom("workers", "", "")
 	c.ExecuteTemplate("workers_list.html", rows)
 }

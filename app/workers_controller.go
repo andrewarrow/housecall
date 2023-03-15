@@ -29,11 +29,11 @@ func handleWorkersIndex(c *router.Context) {
 }
 
 func handleWorkersCreate(c *router.Context) {
-	//params := c.ReadBodyIntoJson()
+	jsonParams := c.ReadBodyIntoJson()
 
 	model := c.FindModel("worker")
 	tableName := model.TableName()
-	sql, params := sqlgen.InsertRow(tableName, model.Fields)
+	sql, params := sqlgen.InsertRow(tableName, model.Fields, jsonParams)
 	c.Db.Exec(sql, params...)
 
 	rows := c.SelectAllFrom("workers", "", "")

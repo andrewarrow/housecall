@@ -20,7 +20,7 @@ func HandleCustomers(c *router.Context, second, third string) {
 
 func handleCustomersIndex(c *router.Context) {
 	if c.Method == "GET" {
-	  rows := c.SelectAllFrom("customers")
+		rows := c.SelectAllFrom("customers", "", "")
 		c.SendContentInLayout("customers_index.html", rows, 200)
 		return
 	}

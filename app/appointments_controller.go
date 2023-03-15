@@ -20,7 +20,7 @@ func HandleAppointments(c *router.Context, second, third string) {
 
 func handleAppointmentsIndex(c *router.Context) {
 	if c.Method == "GET" {
-		rows := c.SelectAllFrom("appointments")
+		rows := c.SelectAllFrom("appointments", "appointment_at asc", "appointment_at > NOW()")
 		model := c.FindModel("appointment")
 		router.FixTimes(model, rows)
 		c.SendContentInLayout("appointments_index.html", rows, 200)

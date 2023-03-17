@@ -20,7 +20,8 @@ func HandleWorkers(c *router.Context, second, third string) {
 
 func handleWorkersIndex(c *router.Context) {
 	if c.Method == "GET" {
-		rows := workersByUserId(c, c.User.Id)
+		model := c.FindModel("worker")
+		rows := c.SelectAllFrom(model, "", c.EmptyParams())
 		c.SendContentInLayout("workers_index.html", rows, 200)
 		return
 	}
@@ -32,13 +33,17 @@ func handleWorkersCreate(c *router.Context) {
 
 	addWorkerWithUserId(c, c.User.Id, jsonParams)
 
-	rows := workersByUserId(c, c.User.Id)
+	model := c.FindModel("worker")
+	params := []any{c.User.Id}
+	rows := c.SelectAllFrom(model, "user_id=$1", params)
 	c.ExecuteTemplate("workers_list.html", rows)
 }
 
 func handleWorkersShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-		row := c.SelectOneFrom(id, "workers")
+		model := c.FindModel("worker")
+		params := []any{id}
+		row := c.SelectOneFrom(model, "where guid=$1", params)
 		c.SendContentInLayout("workers_show.html", row, 200)
 		return
 	}

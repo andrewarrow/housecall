@@ -20,9 +20,8 @@ func HandleAppointments(c *router.Context, second, third string) {
 
 func handleAppointmentsIndex(c *router.Context) {
 	if c.Method == "GET" {
-		model := c.FindModel("appointment")
 		params := []any{}
-		rows := c.SelectAllFrom(model, "where appointment_at > NOW() order by appointment_at asc", params)
+		rows := c.SelectAll("appointment", "where appointment_at > NOW() order by appointment_at asc", params)
 		c.SendContentInLayout("appointments_index.html", rows, 200)
 		return
 	}
@@ -35,9 +34,8 @@ func handleAppointmentsCreate(c *router.Context) {
 
 func handleAppointmentsShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-		model := c.FindModel("appointment")
 		params := []any{id}
-		row := c.SelectOneFrom(model, "guid=$1", params)
+		row := c.SelectOne("appointment", "guid=$1", params)
 		c.SendContentInLayout("appointments_show.html", row, 200)
 		return
 	}

@@ -20,8 +20,7 @@ func HandleCustomers(c *router.Context, second, third string) {
 
 func handleCustomersIndex(c *router.Context) {
 	if c.Method == "GET" {
-		model := c.FindModel("customer")
-		rows := c.SelectAllFrom(model, "", c.EmptyParams())
+		rows := c.SelectAll("customer", "", []any{})
 		c.SendContentInLayout("customers_index.html", rows, 200)
 		return
 	}
@@ -34,9 +33,8 @@ func handleCustomersCreate(c *router.Context) {
 
 func handleCustomersShow(c *router.Context, id string) {
 	if c.Method == "GET" {
-		model := c.FindModel("customer")
 		params := []any{id}
-		row := c.SelectOneFrom(model, "where guid=$1", params)
+		row := c.SelectOne("customer", "where guid=$1", params)
 		c.SendContentInLayout("customers_show.html", row, 200)
 		return
 	}

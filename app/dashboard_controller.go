@@ -9,7 +9,7 @@ func HandleDashboard(c *router.Context, second, third string) {
 		c.UserRequired = true
 		return
 	}
-	workersCount := countWorkersByUserId(c, c.User.Id)
+	workersCount := countWorkersByUserId(c, c.User["id"].(int64))
 	customersCount := c.Count("customers", "")
 	appointmentsCount := c.Count("appointments", "")
 
